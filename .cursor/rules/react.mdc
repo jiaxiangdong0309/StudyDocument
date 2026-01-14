@@ -1,0 +1,252 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# React 技术领域规则
+
+## 领域概述
+React 技术领域涵盖前端开发、组件化架构、状态管理、性能优化等多个方面。本规则专门针对React相关知识点，注重现代React开发、Hooks使用和最佳实践。
+
+## 内容结构规范
+
+### 1. 文档标题格式
+- 使用一级标题（#）作为文档主标题
+- 标题应简洁明了，直接表达核心概念
+- 必须包含英文原文，如：`# Hooks（React Hooks）`
+- 如果是API或Hook，需要提供完整名称，如：`# useState（React.useState）`
+
+### 2. 标准内容结构
+```
+# 概念名称（英文原文）
+
+## 什么是 [概念名称]？
+
+### 定义
+[准确的专业定义，包含技术要点]
+
+### 通俗理解
+[用生活中的例子或比喻来解释复杂概念]
+
+## 核心特征/组成部分
+[列出主要特点、组成部分或技术要素]
+
+## 工作原理/实现方式
+[解释技术原理、实现方法或架构设计]
+
+## 代码示例
+[提供完整、可运行的代码示例]
+
+### 基础用法
+[最基本的实现方式]
+
+### 进阶用法
+[更复杂的应用场景]
+
+### 最佳实践
+[推荐的开发模式和注意事项]
+
+## 应用场景
+[具体的实际应用案例]
+
+## 优缺点分析
+[客观分析技术的优势和局限性]
+
+## 性能考虑
+[性能优化建议和注意事项]
+
+## 兼容性说明
+[版本兼容性和浏览器支持]
+
+## 总结
+[核心要点总结，强调实际应用]
+
+---
+_本文档将持续更新，添加更多相关内容_
+```
+
+## 写作风格要求
+
+### 1. 语言风格
+- **组件化思维**：重点讲解组件化开发思想
+- **函数式编程**：强调函数式编程和不可变性
+- **声明式编程**：关注声明式编程模式
+- **最佳实践**：提供推荐的开发模式
+
+### 2. 技术深度控制
+- **入门级**：适合初学者，重点解释基本概念和简单示例
+- **进阶级**：适合有一定基础的开发者，包含复杂应用场景
+- **专业级**：适合高级开发者，包含性能优化和架构设计
+
+### 3. 实用性要求
+- **可运行**：提供的代码示例必须可以实际运行
+- **可扩展**：代码示例应该易于扩展和修改
+- **可维护**：遵循React开发最佳实践
+
+## React 特定要求
+
+### 1. 代码示例要求
+- **完整性**：提供完整的代码示例，包含必要的导入和配置
+- **可运行性**：确保代码示例可以在现代浏览器中运行
+- **注释详细**：添加详细的中文注释说明
+- **版本标注**：标注适用的React版本
+
+### 2. 技术分类
+- **核心概念**：组件、Props、State、生命周期等
+- **Hooks**：useState、useEffect、useContext、自定义Hooks等
+- **状态管理**：Context API、Redux、Zustand等
+- **路由**：React Router、路由配置等
+- **性能优化**：memo、useMemo、useCallback等
+- **样式方案**：CSS-in-JS、Styled Components、Tailwind等
+
+### 3. 开发环境
+- **现代React**：使用React 18+版本
+- **TypeScript**：优先使用TypeScript，必要时提供JavaScript版本
+- **函数组件**：优先使用函数组件和Hooks
+- **ES6+**：使用现代JavaScript语法
+
+### 4. 实际应用
+- **真实场景**：基于真实的开发场景
+- **问题解决**：关注开发中的常见问题
+- **性能考虑**：包含性能优化建议
+- **用户体验**：注重用户体验和界面设计
+
+## 格式和排版规范
+
+### 1. Markdown 格式
+- 使用标准的 Markdown 语法
+- 合理使用标题层级（最多到四级标题）
+- 使用列表、表格等元素增强可读性
+- 添加适当的空行和分隔符
+
+### 2. 代码示例格式
+```tsx
+// 使用TypeScript React语法高亮
+import React, { useState, useEffect } from 'react';
+
+interface Props {
+  title: string;
+  onToggle?: (value: boolean) => void;
+}
+
+const ExampleComponent: React.FC<Props> = ({ title, onToggle }) => {
+  // 状态管理
+  const [isActive, setIsActive] = useState(false);
+
+  // 副作用处理
+  useEffect(() => {
+    console.log('组件已挂载');
+    return () => {
+      console.log('组件将卸载');
+    };
+  }, []);
+
+  // 事件处理
+  const handleToggle = () => {
+    const newValue = !isActive;
+    setIsActive(newValue);
+    onToggle?.(newValue);
+  };
+
+  return (
+    <div className="example-component">
+      <h2>{title}</h2>
+      <button onClick={handleToggle}>
+        {isActive ? '激活' : '未激活'}
+      </button>
+    </div>
+  );
+};
+
+export default ExampleComponent;
+```
+
+### 3. CSS样式示例
+```css
+/* 使用CSS语法高亮 */
+.example-component {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.example-component h2 {
+  margin: 0 0 1rem 0;
+  color: #333333;
+}
+
+.example-component button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.example-component button:hover {
+  background-color: #0056b3;
+}
+```
+
+### 4. 图表使用
+- 使用 Mermaid 图表展示组件关系
+- 使用流程图展示数据流
+- 使用时序图展示组件交互
+
+## 内容质量要求
+
+### 1. 准确性
+- 确保技术信息的准确性
+- 基于官方文档和最新版本
+- 避免过时或错误的信息
+
+### 2. 时效性
+- 关注React技术的最新发展
+- 定期更新过时的API信息
+- 标注适用的React版本
+
+### 3. 完整性
+- 覆盖概念的主要方面
+- 包含定义、原理、代码、应用等
+- 提供完整的开发指导
+
+### 4. 实用性
+- 注重实际开发价值
+- 提供具体的开发指导
+- 关注实际效果和性能
+
+## 更新和维护
+
+### 1. 版本控制
+- 定期更新过时的API信息
+- 添加新的React特性
+- 根据开发者反馈优化内容
+
+### 2. 代码维护
+- 确保代码示例的可运行性
+- 更新过时的API调用
+- 优化代码性能和可读性
+
+### 3. 质量检查
+- 确保内容的准确性和完整性
+- 检查代码示例的正确性
+- 验证信息的时效性
+
+## AI 生成指导原则
+
+当使用 AI 生成React相关知识点内容时，请遵循以下原则：
+
+1. **现代React**：优先使用函数组件和Hooks
+2. **TypeScript**：优先使用TypeScript提供类型安全
+3. **组件化**：强调组件化开发思想
+4. **最佳实践**：遵循React开发最佳实践
+5. **通俗易懂**：使用简单易懂的语言解释复杂概念
+6. **逻辑清晰**：按照合理的逻辑顺序组织内容
+7. **格式规范**：使用标准的 Markdown 格式
+8. **持续更新**：标注更新时间，保持内容时效性
+9. **可运行性**：确保所有代码示例都可以在现代浏览器中运行
+
+通过遵循这些规则，确保生成的React知识点内容既专业又实用，能够有效指导现代React开发工作。
