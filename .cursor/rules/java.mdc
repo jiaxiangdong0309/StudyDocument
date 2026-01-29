@@ -1,0 +1,363 @@
+---
+description: Java 技术领域规则，以 Android 专家视角撰写，兼顾深度与广度
+globs: ["Java/**/*.md"]
+alwaysApply: false
+---
+# Java 技术领域规则（Android 专家视角）
+
+## 核心定位
+
+**我是 Android 开发者**，学习 Java 的目的是为了更深入理解 Android 框架的底层原理。因此：
+
+| 要求 | 说明 |
+|-----|------|
+| **视角** | 以 Android 专家的视角来学习和理解 Java 技术 |
+| **场景** | 所有示例都要结合 Android 真实开发场景（如 Handler、Binder、组件化、性能优化等） |
+| **代码** | 优先使用 **Kotlin** 代码示例，必要时提供 Java 版本对照 |
+| **深度** | 达到专家级的深度和广度，面试只是检验手段，不是目的 |
+| **关联** | 每个 Java 知识点都要说明"这在 Android 中有什么用" |
+
+### 学习目标
+
+```
+学 Java 集合 → 理解 ArrayMap/SparseArray 为什么比 HashMap 更适合 Android
+学 Java 并发 → 理解 Handler/Looper/HandlerThread 的设计精髓
+学 Java 反射 → 理解 ButterKnife/ARouter 等框架的实现原理
+学 Java 注解 → 理解 Room/Retrofit/Dagger 的注解处理机制
+学 Java 泛型 → 理解 Gson/Moshi 序列化框架的类型擦除问题
+```
+
+## 写作三原则
+
+| 原则 | 要求 |
+|-----|------|
+| **大白话** | 像给朋友讲技术，用生活例子类比复杂概念 |
+| **专家深度** | 不只说"怎么做"，更要说"为什么这么设计"、"有什么权衡取舍" |
+| **Android 关联** | 每个知识点都要回答"这在 Android 中怎么用/为什么重要" |
+
+### 写作风格示例
+
+```
+❌ 不好：HashMap 使用数组+链表+红黑树的数据结构，当链表长度超过8时会转换为红黑树。
+
+✅ 好的：HashMap 就像图书馆的书架，先按首字母分区（数组），同区的书排成一排（链表），
+书太多了就换成更高效的索引卡（红黑树）。
+
+但在 Android 里，Google 工程师觉得这个"图书馆"太重了——手机内存金贵啊！
+于是他们造了个"迷你书架" ArrayMap：虽然找书慢一点点，但省了一大半空间。
+这就是为什么 Android 官方推荐在数据量小于 1000 时用 ArrayMap 替代 HashMap。
+```
+
+## 专家级内容六维度
+
+每个技术点的内容应覆盖以下维度：
+
+| 维度 | 说明 | Android 视角示例 |
+|-----|------|-----------------|
+| **技术演进** | 这个技术为什么会出现？ | Handler 为什么要设计成"一个线程一个 Looper"？解决了什么问题？ |
+| **设计哲学** | 背后的设计模式、权衡取舍 | 为什么 Android 选择消息队列而不是回调来做线程通信？ |
+| **横向对比** | 与同类方案的深度对比 | Handler vs RxJava vs Coroutine：各自优劣和适用场景 |
+| **实战经验** | 大型项目中的最佳实践 | 如何避免 Handler 内存泄漏？WeakReference 还是静态内部类？ |
+| **边界认知** | 技术的局限性、替代方案 | 什么场景下 Handler 不如协程好用？ |
+| **源码洞察** | 设计亮点、可借鉴的技巧 | MessageQueue 的 IdleHandler 设计有什么可借鉴之处？ |
+
+## 文档结构
+
+### 三级文档体系
+
+```
+Java/[技术名称]/
+├── README.md      # 导航：学习路线 + Android 应用场景 + 核心问题预览
+├── 1-基础篇.md    # 入门：是什么、怎么用、基本原理
+├── 2-进阶篇.md    # 精通：高级用法、性能优化、Android 实战经验
+├── 3-源码篇.md    # 专家：设计哲学、源码洞察、深度分析
+└── 4-实战篇.md    # 可选：Android 框架源码分析、自己动手实现
+```
+
+### 技术分类与 Android 关联
+
+| Java 技术 | Android 关联 | 学了能理解什么 |
+|----------|-------------|---------------|
+| **反射** | 组件化路由、插件化、热修复 | ARouter、Tinker、VirtualAPK 原理 |
+| **注解** | APT 代码生成、依赖注入 | ButterKnife、Dagger/Hilt、Room 原理 |
+| **泛型** | 序列化框架、网络请求 | Gson 类型擦除问题、Retrofit 泛型解析 |
+| **集合框架** | Android 优化集合 | ArrayMap、SparseArray 为什么更省内存 |
+| **并发编程** | Android 线程模型 | Handler/Looper、AsyncTask、协程原理 |
+| **JVM** | Android 虚拟机 | ART vs Dalvik、内存优化、GC 调优 |
+| **IO/NIO** | 文件操作、网络请求 | OkHttp 底层原理、Okio 设计思想 |
+| **设计模式** | Android 框架设计 | 观察者(LiveData)、建造者(AlertDialog)、适配器(RecyclerView) |
+
+### 各篇内容要求
+
+**基础篇**（让人会用）
+- 技术演进：为什么会出现这个技术
+- 核心概念：用大白话解释
+- 基本用法：Kotlin 代码快速上手
+- **Android 关联**：这个知识点在 Android 中哪里用到了
+
+**进阶篇**（让人用好）
+- 高级特性：不常用但很有用的功能
+- 性能优化：问题现象 → 原因分析 → 解决方案 → 效果验证
+- **Android 实战**：在 Android 项目中的最佳实践
+- 横向对比：与 Android 中同类方案的对比（如 Handler vs Coroutine）
+- 边界认知：什么情况下不适用
+
+**源码篇**（让人理解本质）
+- 设计哲学：为什么这样设计，有什么权衡
+- 核心流程：用流程图展示，抓主干不纠细节
+- **Android 框架对照**：Android 源码中是如何使用/改进这个技术的
+- 深度问题：专家级的思考题
+
+### 面试检验（每篇末尾）
+
+面试题作为内容的检验，而非内容的目的：
+- 基础篇：3-5 题，检验是否理解基本概念
+- 进阶篇：5-8 题，检验是否有实战能力
+- 源码篇：3-5 题，检验是否理解设计本质
+
+答案格式：**先说结论 → 再说原理 → 最后用 Android 实例佐证**
+
+## 源码分析规范
+
+**核心原则：重理解、轻细节，抓设计思想，关联 Android**
+
+每个源码分析包含：
+1. **一句话总结**：大白话说清核心原理
+2. **设计哲学**：为什么这样设计，有什么权衡取舍
+3. **核心流程图**：必须用 Mermaid，抓主干忽略细节
+4. **关键源码**：最多 20-40 行，只贴最核心的代码
+5. **Android 对照**：Android 框架中是如何应用/改进的
+6. **延伸思考**：如果让你设计，你会怎么做？
+
+### 源码版本说明
+
+- Java 源码默认基于 **JDK 17 LTS**
+- Android 源码默认基于 **Android 14 (API 34)**
+- 涉及版本差异时需标注
+
+## 代码规范
+
+### 语言选择
+
+| 场景 | 语言选择 |
+|-----|---------|
+| Android 业务代码示例 | **Kotlin 优先**，体现现代 Android 开发风格 |
+| Java 底层原理说明 | Java，因为需要看懂 JDK/AOSP 源码 |
+| 两种语言对比 | 同时提供，用标签页或并排展示 |
+
+### Kotlin 代码风格
+
+```kotlin
+// ✅ 好的示例：使用 Kotlin 协程处理异步任务
+class UserRepository(
+    private val api: ApiService,
+    private val db: UserDao
+) {
+    // 挂起函数，主线程安全
+    suspend fun getUser(id: String): User {
+        // 先查本地缓存
+        val cached = db.findById(id)
+        if (cached != null) return cached
+
+        // 缓存未命中，请求网络
+        return withContext(Dispatchers.IO) {
+            api.fetchUser(id).also { user ->
+                db.insert(user)  // 顺便缓存
+            }
+        }
+    }
+}
+```
+
+### Java/Kotlin 对照示例
+
+当需要说明 Java 原理时，提供双语对照：
+
+```
+// Java 写法（理解原理用）
+ExecutorService executor = Executors.newFixedThreadPool(4);
+executor.submit(() -> {
+    // 后台任务
+});
+
+// Kotlin 写法（实际开发用）
+val scope = CoroutineScope(Dispatchers.IO)
+scope.launch {
+    // 后台任务，更简洁，支持结构化并发
+}
+```
+
+### 示例场景要求
+
+**必须使用 Android 真实场景**：
+
+```
+❌ 不好：
+// 通用的 Java 示例
+List<String> list = new ArrayList<>();
+list.add("item1");
+
+✅ 好的：
+// Android 场景：RecyclerView 数据源
+class ArticleAdapter : ListAdapter<Article, ArticleViewHolder>(ArticleDiffCallback()) {
+
+    // DiffUtil 内部就是用 Java 集合实现的
+    // 理解 ArrayList 的随机访问特性，才能理解为什么 DiffUtil 效率高
+    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+        holder.bind(getItem(position))  // O(1) 随机访问
+    }
+}
+```
+
+### 示例自洽性（重要！）
+
+代码示例必须**自包含**，读者能直接理解：
+
+```kotlin
+// ❌ 不好：
+viewModel.loadData()  // viewModel 哪来的？loadData 返回什么？
+
+// ✅ 好的：
+class ArticleViewModel(
+    private val repository: ArticleRepository
+) : ViewModel() {
+
+    private val _articles = MutableLiveData<List<Article>>()
+    val articles: LiveData<List<Article>> = _articles
+
+    fun loadArticles() {
+        viewModelScope.launch {
+            // 在 IO 线程请求数据，自动切回主线程更新 UI
+            val result = repository.getArticles()
+            _articles.value = result
+        }
+    }
+}
+```
+
+### 注释规范
+
+注释解释**意图和 Android 特有考量**：
+
+```kotlin
+// ❌ 不好：
+adapter.submitList(newList)  // 提交新列表
+
+// ✅ 好的：
+// submitList 内部会用 DiffUtil 在后台线程计算差异
+// 避免在主线程做大量计算，防止 UI 卡顿
+adapter.submitList(newList)
+```
+
+**必须加注释的场景**：
+- Android 特有的内存/性能考量
+- 为什么选这个 API 而不是另一个（如 ArrayMap vs HashMap）
+- 容易导致内存泄漏或 ANR 的地方
+- 与 Android 生命周期相关的注意事项
+
+## 图表规范
+
+优先使用 Mermaid：
+- **流程图**：执行流程、Android 启动流程
+- **时序图**：Handler 消息传递、Binder 通信
+- **类图**：Android 组件继承关系
+- **状态图**：Activity/Fragment 生命周期
+
+### 示例：Handler 消息机制
+
+```mermaid
+sequenceDiagram
+    participant UI as 主线程
+    participant Handler as Handler
+    participant MQ as MessageQueue
+    participant Looper as Looper
+    participant Worker as 工作线程
+
+    Worker->>Handler: sendMessage(msg)
+    Handler->>MQ: enqueueMessage()
+    Note over MQ: 按时间排序插入队列
+
+    loop 消息循环
+        Looper->>MQ: next()
+        MQ-->>Looper: 返回消息
+        Looper->>Handler: dispatchMessage()
+        Handler->>UI: handleMessage()
+    end
+```
+
+## 特殊内容要求
+
+### 并发相关
+
+- 必须说明**线程安全性**和**Android 主线程约束**
+- 涉及异步时要对比 **Handler vs RxJava vs Coroutine**
+- 给出**正确示例**和**容易内存泄漏的错误示例**
+
+```kotlin
+// ❌ 错误：非静态内部类持有 Activity 引用，导致内存泄漏
+class MainActivity : AppCompatActivity() {
+    private val handler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            // 这里隐式持有 MainActivity 引用！
+            updateUI()
+        }
+    }
+}
+
+// ✅ 正确：使用弱引用或 lifecycleScope
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // 协程会自动跟随 Activity 生命周期取消
+        lifecycleScope.launch {
+            val data = withContext(Dispatchers.IO) { fetchData() }
+            updateUI(data)
+        }
+    }
+}
+```
+
+### 集合相关
+
+- 必须对比 **Java 集合 vs Android 优化集合**（ArrayMap、SparseArray）
+- 说明**内存占用**和**性能差异**
+- 给出选择建议：什么时候用哪个
+
+### 反射/注解相关
+
+- 必须关联 **Android 常用框架**的实现原理
+- 说明**编译时注解 vs 运行时注解**的选择
+- 分析对 **APK 体积**和**启动速度**的影响
+
+### JVM/内存相关
+
+- 对比 **JVM vs ART/Dalvik** 的差异
+- 结合 **Android Profiler** 说明内存分析
+- 用 **LeakCanary** 等工具演示问题排查
+
+## 禁止事项
+
+- ❌ 大段贴源码（超过40行）或逐行注释
+- ❌ 只说 Java 理论，不关联 Android 实际应用
+- ❌ 代码示例用纯 Java 服务端场景（如 Servlet、JDBC）
+- ❌ 缺少横向对比和边界认知
+- ❌ 使用过时 API（如 `AsyncTask`、`Loader`）
+- ❌ 代码示例中出现未定义/未解释的类
+- ❌ 忽略 Android 特有的内存泄漏风险
+- ❌ 展示线程不安全的代码却不说明风险
+- ❌ 只给 Java 代码，不提供 Kotlin 版本
+
+## 质量自检
+
+写完后检查：
+- [ ] 六维度是否覆盖？（技术演进、设计哲学、横向对比、实战经验、边界认知、源码洞察）
+- [ ] 大白话 + 生活例子？
+- [ ] **每个知识点都关联了 Android 应用场景？**
+- [ ] **代码示例使用了 Kotlin？**（除非是讲解 Java 底层原理）
+- [ ] **示例场景是 Android 真实场景？**（不是通用 Java 服务端场景）
+- [ ] 说清"为什么这么设计"？
+- [ ] 有 Android 实战经验和踩坑分享？
+- [ ] 源码分析有流程图？代码不超过40行？
+- [ ] 并发相关内容说明了内存泄漏风险？
+- [ ] 提到了 Android 中的替代/优化方案？
