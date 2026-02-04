@@ -1,0 +1,32 @@
+# Cursor 忽略文件配置
+# 此文件指定 Cursor 应该忽略的文件和目录
+
+# 忽略所有 node_modules 目录
+node_modules/
+
+# 忽略日志文件
+*.log
+
+# 忽略构建输出目录
+dist/
+build/
+out/
+
+# 忽略临时文件
+*.tmp
+*.temp
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+
+# 忽略环境配置文件
+.env
+.env.local
+
+# 忽略 Git 相关文件
+.git/
+
+# 忽略 IDE 文件
+.vscode/
+.idea/
