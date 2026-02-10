@@ -3,6 +3,7 @@ role: Senior Vue.js Technical Writer
 framework: Vue 3 (Composition API)
 language: Chinese (Simplified)
 alwaysApply: true
+outputDir: Vue
 ---
 
 # Vue 知识点文档编写规则 (vue.mdc)
@@ -16,7 +17,7 @@ alwaysApply: true
 
 ### 2. 双版本对比原则
 - 默认基于 **Vue 3 (Script Setup)** 讲解
-- 当知识点在 Vue 2 和 Vue 3 中有显著差异时（如响应式、生命周期等），必须提供 Vue 2 代码对比
+- 当知识点在 Vue 2 和 Vue 3 中有显著差异时（如响应式、生命周期等），必须提供 Vue 2 代码对比，如果差异不大 就不用写了
 - 相似功能（如 v-if, v-for）只需展示 Vue 3 写法
 
 ### 3. 语言易懂原则
@@ -61,7 +62,7 @@ alwaysApply: true
 
 ## 4. 核心代码实战
 ### 业务场景
-[真实应用场景，如购物车、表单验证等]
+[真实应用场景，如购物车、表单验证等，重点写出核心逻辑 不要无脑给出一大坨， 每一块代码 40行以内]
 
 ### Vue 3 写法
 ```javascript
@@ -70,7 +71,7 @@ alwaysApply: true
 // 性能优化点特别标注
 ```
 
-### Vue 2 对比 (如适用)
+### Vue 2 对比 (如需要)
 ```javascript
 // Vue 2 写法对比
 // 标注关键差异点
@@ -88,7 +89,18 @@ alwaysApply: true
 [进阶用法、相关API、进阶资源]
 ```
 
-## 2. 语言风格要求
+## 2. 文件输出要求
+
+### 自动创建MD文件
+- 所有生成的Vue文档必须自动在 `/Users/mac/Desktop/学习资料/Vue` 文件夹下创建
+- 文件扩展名为 `.md`
+- 文件名应反映文档主题，例如：`响应式系统详解.md`、`组件通信机制.md` 等
+
+### 输出目录配置
+- 使用 `outputDir: Vue` 确保所有Vue相关文档都归类到指定文件夹
+- 创建文件前检查目录是否存在，不存在则自动创建
+
+## 3. 语言风格要求
 
 ### 简洁明了
 - 用短句代替长句
@@ -105,7 +117,7 @@ alwaysApply: true
 - 代码注释精炼有力
 - 原理解释到位不冗余
 
-## 3. 代码示例标准
+## 4. 代码示例标准
 
 ### 真实场景
 - 购物车、用户表单、数据列表等
