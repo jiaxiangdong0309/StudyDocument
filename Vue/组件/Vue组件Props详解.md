@@ -31,7 +31,7 @@ flowchart LR
 
 ### Vue 3 写法 — 基础用法
 
-```vue
+```js
 <!-- ProductCard.vue -->
 <script setup>
 // 声明 props，带类型校验和默认值
@@ -52,7 +52,7 @@ const props = defineProps({
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件使用 -->
 <script setup>
 import ProductCard from './ProductCard.vue'
@@ -60,9 +60,9 @@ import ProductCard from './ProductCard.vue'
 
 <template>
   <!-- 静态字符串直接传，动态数据用 v-bind -->
-  <ProductCard 
-    title="Vue实战指南" 
-    :price="99.8" 
+  <ProductCard
+    title="Vue实战指南"
+    :price="99.8"
     :tags="['前端', '框架']"
     on-sale
   />
@@ -71,7 +71,7 @@ import ProductCard from './ProductCard.vue'
 
 ### Vue 3 写法 — TypeScript 类型声明（推荐）
 
-```vue
+```js
 <script setup lang="ts">
 // 纯类型声明，更优雅
 interface Props {

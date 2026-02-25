@@ -35,7 +35,7 @@ flowchart TD
 
 ### Vue 3 写法 — 基础用法
 
-```vue
+```js
 <script setup>
 import { defineAsyncComponent } from 'vue'
 
@@ -53,7 +53,7 @@ const HeavyChart = defineAsyncComponent(
 
 ### Vue 3 写法 — 完整配置（推荐）
 
-```vue
+```js
 <script setup>
 import { defineAsyncComponent } from 'vue'
 import LoadingSpinner from './LoadingSpinner.vue'

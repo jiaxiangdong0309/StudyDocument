@@ -36,7 +36,7 @@ graph TD
 
 ### Vue 3 写法
 
-```vue
+```js
 <template>
   <!-- 插值语法：文本渲染 -->
   <h1>欢迎 {{ user.name }}</h1>
@@ -189,7 +189,7 @@ const handleClick = () => {
 
 ### Vue 2 对比
 
-```vue
+```js
 <template>
   <div>
     <!-- 插值语法 -->
@@ -373,7 +373,7 @@ const filteredContent = computed(() => {
 - `.passive` - 以被动模式添加事件监听器
 
 #### 动态指令参数
-```vue
+```js
 <template>
   <!-- 动态参数 -->
   <div v-bind:[attributeName]="value">动态参数</div>

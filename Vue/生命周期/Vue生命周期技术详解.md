@@ -50,7 +50,7 @@ graph TD
 
 ### Vue 3 写法 (Composition API)
 
-```vue
+```js
 <script setup>
 import { ref, onMounted, onBeforeUnmount, onUpdated, watch } from 'vue'
 import { fetchUserInfo, saveDraft } from '@/api/user'
@@ -124,7 +124,7 @@ function debounceSave(data) {
 
 ### Vue 2 对比 (Options API)
 
-```vue
+```js
 <script>
 export default {
   data() {
@@ -324,7 +324,7 @@ export function useMousePosition() {
 ```
 
 #### 3. keep-alive 专属钩子
-```vue
+```js
 <script setup>
 import { onActivated, onDeactivated } from 'vue'
 

@@ -235,7 +235,7 @@ export default defineConfig({
 
 **使用效果 - 无需手动导入：**
 
-```vue
+```js
 <script setup lang="ts">
 // 无需 import { ref, computed } from 'vue'
 // 无需 import { useRouter } from 'vue-router'
@@ -385,7 +385,7 @@ resolve: {
 
 ### 错误 2：Vue 组件 HMR 失效
 
-```vue
+```js
 <!-- ❌ 错误：组件没有定义 name，HMR 可能异常 -->
 <script setup lang="ts">
 // ...

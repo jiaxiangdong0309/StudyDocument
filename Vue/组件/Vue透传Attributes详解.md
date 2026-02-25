@@ -34,7 +34,7 @@ flowchart TD
 
 ### Vue 3 写法 — 自动透传
 
-```vue
+```js
 <!-- MyButton.vue —— 只有一个根元素 -->
 <script setup>
 defineProps({ label: String })
@@ -45,12 +45,12 @@ defineProps({ label: String })
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件 -->
 <template>
   <!-- class 和 @click 都没被 props/emits 声明，会自动透传到 <button> 上 -->
   <MyButton label="提交" class="btn-primary" id="submit-btn" @click="handleClick" />
-  
+
   <!-- 最终渲染结果：
   <button class="btn-base btn-primary" id="submit-btn">提交</button>
   注意：class 会合并，不会覆盖！ -->
@@ -59,7 +59,7 @@ defineProps({ label: String })
 
 ### Vue 3 写法 — 禁用自动透传 + 手动控制
 
-```vue
+```js
 <!-- MyInput.vue —— 多根元素或想精确控制透传目标 -->
 <script setup>
 defineOptions({ inheritAttrs: false })  // 禁用自动透传
@@ -75,7 +75,7 @@ defineProps({ label: String })
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件 -->
 <template>
   <!-- placeholder 和 @input 会透传到 <input> 上，而非外层 <div> -->
@@ -85,7 +85,7 @@ defineProps({ label: String })
 
 ### Vue 3 写法 — JS 中访问 attrs
 
-```vue
+```js
 <script setup>
 import { useAttrs } from 'vue'
 

@@ -33,7 +33,7 @@ flowchart TD
 
 ### Vue 3 写法 — 局部注册（推荐）
 
-```vue
+```js
 <!-- src/components/MyButton.vue -->
 <script setup>
 defineProps({
@@ -48,7 +48,7 @@ defineProps({
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件中使用 —— Script Setup 自动注册 -->
 <script setup>
 // 只需 import，无需手动注册！Script Setup 会自动识别

@@ -23,7 +23,7 @@ flowchart TD
     A["祖先组件 provide('theme', 'dark')"] --> B[子组件 - 不需要任何处理]
     B --> C[孙组件 - 不需要任何处理]
     C --> D["曾孙组件 inject('theme') → 'dark'"]
-    
+
     style B fill:#f0f0f0,stroke:#ccc
     style C fill:#f0f0f0,stroke:#ccc
 ```
@@ -34,7 +34,7 @@ flowchart TD
 
 ### Vue 3 写法 — 基础用法
 
-```vue
+```js
 <!-- App.vue 祖先组件 -->
 <script setup>
 import { ref, provide } from 'vue'
@@ -56,7 +56,7 @@ provide('toggleTheme', toggleTheme) // 提供修改方法
 </template>
 ```
 
-```vue
+```js
 <!-- DeepChild.vue 深层后代组件 —— 直接注入使用 -->
 <script setup>
 import { inject } from 'vue'
@@ -87,7 +87,7 @@ export const ThemeKey: InjectionKey<Ref<string>> = Symbol('theme')
 export const UserKey: InjectionKey<Ref<User>> = Symbol('user')
 ```
 
-```vue
+```js
 <!-- 祖先组件 -->
 <script setup lang="ts">
 import { ref, provide } from 'vue'
@@ -98,7 +98,7 @@ provide(ThemeKey, theme)  // 类型安全，IDE 有完整提示
 </script>
 ```
 
-```vue
+```js
 <!-- 后代组件 -->
 <script setup lang="ts">
 import { inject } from 'vue'
@@ -110,7 +110,7 @@ const theme = inject(ThemeKey)  // 自动推导类型为 Ref<string>
 
 ### Vue 3 写法 — 只读保护（防止后代乱改）
 
-```vue
+```js
 <!-- 祖先组件 -->
 <script setup>
 import { ref, provide, readonly } from 'vue'

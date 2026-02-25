@@ -43,7 +43,7 @@ graph TD
     D -->|否| F{追踪哪一层?}
     F -->|只追踪替换| G[shallowRef]
     F -->|只追踪第一层属性| H[shallowReactive]
-    
+
     C --> I[内部: RefImpl 对象, .value 触发 get/set]
     E --> J[内部: Proxy 深层递归代理]
     G --> K[内部: RefImpl, 只对比 .value 引用]
@@ -98,7 +98,7 @@ graph TD
 
 **场景：用户登录表单**
 
-```vue
+```js
 <script setup>
 import { ref } from 'vue'
 
@@ -132,7 +132,7 @@ async function handleLogin() {
 
 **场景：购物车**
 
-```vue
+```js
 <script setup>
 import { reactive } from 'vue'
 
@@ -149,7 +149,7 @@ function addItem(product) {
 function clearCart() {
   cart.items.length = 0                     // ✅ 修改 length 也能追踪
   cart.totalPrice = 0
-  // ❌ cart = reactive({ items: [], totalPrice: 0 })  
+  // ❌ cart = reactive({ items: [], totalPrice: 0 })
   // 不能整体替换！会丢失响应性
 }
 </script>
@@ -159,7 +159,7 @@ function clearCart() {
 
 **场景：大列表/地图数据，只关心整体替换**
 
-```vue
+```js
 <script setup>
 import { shallowRef, triggerRef } from 'vue'
 
@@ -189,7 +189,7 @@ function forceUpdate() {
 
 **shallowRef 正确示例：**
 
-```vue
+```js
 <script setup>
 import { shallowRef, triggerRef } from 'vue'
 
@@ -216,7 +216,7 @@ function updateCenter(pos) {
 
 **场景：表单配置项，嵌套对象不需要响应式**
 
-```vue
+```js
 <script setup>
 import { shallowReactive } from 'vue'
 
@@ -237,9 +237,9 @@ formConfig.visible = false
 formConfig.rules.username.min = 5  // 视图不会变！
 
 // 🔧 想更新嵌套层？替换整个第一层属性
-formConfig.rules = { 
-  ...formConfig.rules, 
-  username: { required: true, min: 5 } 
+formConfig.rules = {
+  ...formConfig.rules,
+  username: { required: true, min: 5 }
 }
 </script>
 ```
@@ -313,11 +313,11 @@ Vue 官方推荐：**统一用 ref**。原因：
 
 ```javascript
 const count = ref(0)
-// ❌ 
+// ❌
 count = 1         // 这是重新赋值变量，不是修改响应式数据
 console.log(count) // RefImpl 对象
 
-// ✅ 
+// ✅
 count.value = 1
 console.log(count.value) // 1
 ```
@@ -415,7 +415,7 @@ function handleClick() {
 
 ### 7.3 父子组件的更新边界
 
-```vue
+```js
 <!-- Parent.vue -->
 <script setup>
 import { ref } from 'vue'
@@ -428,13 +428,13 @@ const passToChild = ref('hello') // 传给子组件的 props
 <template>
   <!-- 场景1：parentCount 变了 → 父重渲染，Child 走 patch 但 props 没变会跳过 -->
   <p>{{ parentCount }}</p>
-  
+
   <!-- 场景2：passToChild 变了 → 父重渲染，Child 的 props 变了也会更新 -->
   <Child :msg="passToChild" />
 </template>
 ```
 
-```vue
+```js
 <!-- Child.vue -->
 <script setup>
 import { ref } from 'vue'
@@ -463,7 +463,7 @@ const childCount = ref(0)  // 子组件自己的数据
 
 **场景：防抖输入框**
 
-```vue
+```js
 <script setup>
 import { customRef } from 'vue'
 

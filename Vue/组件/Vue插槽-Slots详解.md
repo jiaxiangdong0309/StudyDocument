@@ -30,7 +30,7 @@ flowchart TD
 
 ### 业务场景一：通用卡片组件（默认插槽）
 
-```vue
+```js
 <!-- Card.vue -->
 <template>
   <div class="card">
@@ -41,7 +41,7 @@ flowchart TD
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件使用 -->
 <template>
   <Card>
@@ -53,7 +53,7 @@ flowchart TD
 
 ### 业务场景二：页面布局组件（具名插槽）
 
-```vue
+```js
 <!-- PageLayout.vue -->
 <template>
   <div class="page">
@@ -64,7 +64,7 @@ flowchart TD
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件使用 —— 用 #name 简写指定内容去哪 -->
 <template>
   <PageLayout>
@@ -84,7 +84,7 @@ flowchart TD
 
 ### 业务场景三：列表组件（作用域插槽）
 
-```vue
+```js
 <!-- UserList.vue —— 子组件有数据，但展示方式由父组件决定 -->
 <script setup>
 defineProps({ users: Array })
@@ -102,7 +102,7 @@ defineProps({ users: Array })
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件 —— 拿到子组件传来的数据，自定义渲染方式 -->
 <template>
   <UserList :users="users">
@@ -116,7 +116,7 @@ defineProps({ users: Array })
 
 ### Vue 2 对比
 
-```vue
+```js
 <!-- Vue 2 具名插槽用 slot="name" -->
 <template slot="header">
   <h1>标题</h1>

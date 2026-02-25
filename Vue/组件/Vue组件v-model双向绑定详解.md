@@ -38,7 +38,7 @@ flowchart LR
 
 ### Vue 3 写法 — 基础 v-model
 
-```vue
+```js
 <!-- MyInput.vue 子组件 -->
 <script setup>
 // 声明接收 modelValue
@@ -56,7 +56,7 @@ const onInput = (e) => {
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件使用 —— 一行搞定双向绑定 -->
 <script setup>
 import { ref } from 'vue'
@@ -73,7 +73,7 @@ const username = ref('')
 
 ### Vue 3 写法 — 多个 v-model（命名 v-model）
 
-```vue
+```js
 <!-- UserForm.vue 子组件 -->
 <script setup>
 defineProps({ firstName: String, lastName: String })
@@ -86,7 +86,7 @@ const emit = defineEmits(['update:firstName', 'update:lastName'])
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件 —— 同时绑定多个值 -->
 <template>
   <UserForm v-model:first-name="first" v-model:last-name="last" />
@@ -95,7 +95,7 @@ const emit = defineEmits(['update:firstName', 'update:lastName'])
 
 ### Vue 3.4+ — defineModel 宏（最简写法）
 
-```vue
+```js
 <!-- MyInput.vue —— 最简洁的写法 -->
 <script setup>
 // defineModel 自动处理 prop + emit，返回一个可读写的 ref

@@ -163,7 +163,7 @@ export default defineConfig({
 
 ### CSS Modules 使用
 
-```vue
+```js
 <!-- src/components/UserCard.vue -->
 <script setup lang="ts">
 // 导入 CSS Modules
@@ -306,7 +306,7 @@ additionalData: `@use "@/styles/variables" as *;`
 
 ### 错误 2：CSS Modules 类名访问失败
 
-```vue
+```js
 <!-- ❌ 错误：直接使用类名字符串 -->
 <div class="card">
 

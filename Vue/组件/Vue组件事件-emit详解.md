@@ -31,7 +31,7 @@ flowchart LR
 
 ### Vue 3 写法
 
-```vue
+```js
 <!-- SearchBox.vue 子组件 -->
 <script setup>
 import { ref } from 'vue'
@@ -61,7 +61,7 @@ const handleClear = () => {
 </template>
 ```
 
-```vue
+```js
 <!-- 父组件使用 -->
 <script setup>
 import SearchBox from './SearchBox.vue'
@@ -83,7 +83,7 @@ const onClear = () => {
 
 ### Vue 3 写法 — TypeScript 事件校验
 
-```vue
+```js
 <script setup lang="ts">
 // 带类型校验的事件声明
 const emit = defineEmits<{
