@@ -1,6 +1,5 @@
 ---
 description: Android 技术领域规则，以专家视角撰写，兼顾深度与广度
-globs: ["Android/**/*.md"]
 alwaysApply: false
 ---
 # Android 技术领域规则
