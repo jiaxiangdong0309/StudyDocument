@@ -48,9 +48,6 @@ graph TD
     A[Widget Tree<br/>配置蓝图] -->|创建/更新| B[Element Tree<br/>生命周期管理]
     B -->|创建/更新| C[RenderObject Tree<br/>布局与绘制]
 
-    style A fill:#e1f5ff
-    style B fill:#fff4e1
-    style C fill:#ffe1f5
 ```
 
 **Widget 树特点**：
@@ -883,5 +880,5 @@ class _ExpandableItemState extends State<ExpandableItem> {
 
 ### 下一步
 - 学习 **Widget 原理篇**：深入三棵树、渲染管线
-- 实践 **状态管理**：Provider、Riverpod、Bloc
-- 掌握 **动画系统**：AnimationController、Tween
+
+
